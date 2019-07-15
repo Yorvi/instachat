@@ -1,0 +1,26 @@
+<nav>
+  <div class="container">
+    <div class="nav">
+      <% if current_user %>
+        <div class="nav-left">
+          <%= link_to current_user.username, root_path, class: "btn-home" %> <i id="verified" class="fas fa-certificate"></i>
+        </div>
+        <div>
+        </div>
+        <div class="nav-right">
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "btn-signout" %>
+        </div>
+      <% else %>
+        <div class="nav-left">
+          Instachat
+        </div>
+        <div>
+        </div>
+        <div class="nav-right">
+          <%= link_to 'Log in', new_user_session_path, class: "btn-signin" %>
+          <%= link_to 'Sign up', new_user_registration_path, class: "btn-signup" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</nav>

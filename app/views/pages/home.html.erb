@@ -1,0 +1,27 @@
+<h1>Homepage</h1>
+<%= link_to "New Status", new_post_path %>
+<div class="posts-pane">
+  <% @posts.each do |post| %>
+    <div class="avatar">
+      <img class="avatar-img" src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="avatar">
+    </div>
+    <div class="post">
+      <div class="post-header">
+        <div class="header-left">
+          <h3><%= post.user.first_name %> <%= post.user.last_name %></h3>
+          <h5>@<%= post.user.username.downcase %> · <%= time_ago_in_words(post.created_at) %></h5>
+        </div>
+        <div class="header-right">
+          <i class="fas fa-ellipsis-v"></i>
+        </div>
+      </div>
+      <div class="post-body">
+        <p><%= post.status %></p>
+      </div>
+      <div class="post-comments">
+        <%= pluralize(post.comments.count, "Comment") %>      
+      </div>
+    </div>
+  <% end %>
+</div>
+

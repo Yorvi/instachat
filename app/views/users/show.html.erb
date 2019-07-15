@@ -1,0 +1,14 @@
+<h1><%= fullname %></h1>
+<%= @user.username %> <br>
+<%= @user.description %>
+<br>
+<br>
+
+<ul>
+  <% @user_posts.each do |post| %>
+    <li><%= post.status %></li>
+    <%= time_ago_in_words(post.created_at) %>
+    <br>
+  <% end %>
+</ul>
+<%= link_to 'All Posts', posts_path %>

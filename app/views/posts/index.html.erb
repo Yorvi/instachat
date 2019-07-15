@@ -1,0 +1,13 @@
+<h1>Posts Page</h1>
+
+<%= link_to "New Status", new_post_path %>
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= post.status %> 
+      <%= link_to "Show", post %> // 
+      <%= render "adminlinks", post: post  %>
+      <%= pluralize(post.comments.count, "Comment") %>
+    </li>
+  <% end %>
+</ul>

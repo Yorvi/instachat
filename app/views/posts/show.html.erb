@@ -1,0 +1,23 @@
+<h1><%= @post.status %></h1>
+<small><%= @post.created_at.strftime("%l:%M %p · %-m/%e/%y") %></small>
+<br>
+<br>
+<br>
+
+<% if current_user %>
+  <%= form_with model: [@post, @comment], remote: true do |f| %>
+    <%= f.text_field :body %>
+    <%= f.submit "Comment" %>
+  <% end %>  
+<% else %>
+  
+<% end %>
+
+<div id="comments_pane">
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', comment: comment %>
+  <% end %>
+</div>
+
+<%= link_to 'All Posts', posts_path %><br>
+<%= render 'posts/adminlinks', post: @post %>
