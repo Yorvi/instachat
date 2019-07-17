@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'pages#home' do
-    resources :posts, only: [:create, :destroy]  
+  root 'posts#index' do
+    resources :posts, only: [:new, :create, :destroy]  
   end
 
   devise_for :users

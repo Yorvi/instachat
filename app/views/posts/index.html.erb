@@ -1,13 +1,45 @@
-<h1>Posts Page</h1>
+<div class="timeline">
 
-<%= link_to "New Status", new_post_path %>
-<ul>
-  <% @posts.each do |post| %>
-    <li>
-      <%= post.status %> 
-      <%= link_to "Show", post %> // 
-      <%= render "adminlinks", post: post  %>
-      <%= pluralize(post.comments.count, "Comment") %>
-    </li>
+  <% if current_user %>
+  
+    <div class="user-pane">
+      <div class="user">
+        <div class="avatar">
+          <img class="avatar-img" src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="avatar">
+        </div>
+        <div class="user-info">
+          <h3><%= current_user.first_name %> <%= current_user.last_name %></h3>
+          <h5>@<%= current_user.username.downcase %></h5>
+        </div>
+        <div class="post-form">
+          <% if current_user %>
+            <%= render 'posts/form'  %>
+          <% else %>
+            
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div></div>
+    <div class="posts-pane">
+      <% @posts.each do |post| %>
+        <%= render 'posts/post', post: post %>
+      <% end %>
+    </div>
+
+  <% else %>
+
+    <div class="unrestricted-info">
+      <img src="http://pa1.narvii.com/6509/4720addcf2b43a89af7be832950f9a4d4d14e056_00.gif" alt="lost">
+      <h1><i class="fas fa-exclamation-circle"></i> Oh oh, you aren't a logged in</h1>
+      <p>
+        Log in or create an account and see what all the fun is about...
+      </p> <br>
+      <div>
+        <%= link_to 'Log in', new_user_session_path, class: "btn-signin" %>
+        <%= link_to 'Sign up', new_user_registration_path, class: "btn-signup" %>
+      </div>
+    </div>
+
   <% end %>
-</ul>
+</div>
